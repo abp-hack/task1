@@ -1,0 +1,10 @@
+{% extends 'admin/change_list.html' %}
+
+{% block object-tools %}
+    <div>
+        <input value="Таблика" type="button" onclick="location.href='{% url 'admin:table_view' %}'" />
+
+    </div>
+    <br />
+    {{ block.super }}
+{% endblock %}

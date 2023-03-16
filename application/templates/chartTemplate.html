@@ -1,0 +1,46 @@
+{% extends 'admin/change_form.html' %}
+{% load static %}
+
+
+
+{% block after_field_sets %}
+    
+    {% if x %}
+        <div style="width: 400px; height=300px">
+            <canvas  id="chart" width="400" height="450"></canvas>
+        </div>
+        <script src="{% static 'chart.js' %}"></script>
+        <script>
+            window.onload = function () {
+                var data = {{y|safe}}
+
+                var labels = {{x|safe}}
+            
+                var config = {
+                  type: "{{type|safe}}",
+                  data: {
+                    labels: labels,
+                    datasets: [
+                      {
+                        label: "{{label|safe}}",
+                        backgroundColor: "{{type|safe}}" == 'bar' || 'horizontalBar'? 'lightblue':'black',
+                        borderColor: 'lightblue',
+                        data: data,
+                        fill: false
+                      }
+                    ]
+                  },
+                  options: {
+                    responsive: true
+                  }
+                };
+              
+                var ctx = document.getElementById('chart').getContext('2d');
+                window.myLine = new Chart(ctx, config);
+              };
+        </script>
+    </div>
+    {% endif %}
+    <br />
+    {{ block.super }}
+{% endblock %}

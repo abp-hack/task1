@@ -1,0 +1,49 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block content %}
+    <script src="{% static 'react-dev.js' %}" crossorigin></script>
+    <script src="{% static 'react-dom.js' %}" crossorigin></script>
+    <script src="{% static 'babel.js' %}"></script>
+    {% comment %} <script src="https://unpkg.com/browse/antd@5.0.0/dist/antd.js"></script> {% endcomment %}
+    <script src="{% static 'dayjs.js' %}"></script>
+    <script src="{% static 'antd.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'antd.css' %}">    
+    {% comment %} <script>dayjs().format()</script> {% endcomment %}
+    <style>
+        .ant-table-row{
+            background-color: white!important;
+        }
+    
+    </style>
+    
+    <script type="text/jsx" src="{% static 'table.js' %}"></script>
+    <script type="text/javascript">
+        var dataSource = []
+        {% for dataS in dataSource %}
+            var dItem = {}
+            {% for key, value in dataS.items %}
+                dItem["{{key}}"] = "{{value}}"
+            {% endfor %}
+            dataSource.push(dItem)
+        {% endfor %}
+        var data = []
+        {% for dataItem in data %}
+            dItem = {}
+            {% for key, value in dataItem.items %}
+                dItem["{{key}}"] = "{{value}}"
+            {% endfor %}
+            data.push(dItem)
+        {% endfor %}
+
+        {% for key, value in data.items %}
+            data["{{key}}"] = "{{value}}"
+        {% endfor %}
+        
+        setTimeout(() => {
+            table.render(dataSource, data)
+        }, 100)
+        
+    </script>
+    <div id='reactDiv'></div>
+{% endblock %}

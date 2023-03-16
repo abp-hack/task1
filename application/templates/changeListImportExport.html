@@ -1,0 +1,12 @@
+{% extends 'admin/change_list.html' %}
+
+{% block object-tools %}
+    <div>
+        <input value="Cкачать Excel" type="button" onclick="location.href='{{nameExportUrl | safe}}'" />
+        <input value="Скачать TXT" type="button" onclick="location.href='{{nameExportTXTUrl}}'" />
+        <input value="Импорт из Excel" type="button" onclick="location.href='{{nameImportUrl}}'" />
+
+    </div>
+    <br />
+    {{ block.super }}
+{% endblock %}
